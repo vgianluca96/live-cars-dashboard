@@ -21,25 +21,29 @@
                 @forelse ($cars as $car)
                 <tr>
                   <th scope="row">
-                    <img src="{{asset('storage/' . $car->image)}}" alt="">
+                    <img src="{{asset('storage/' . $car->image)}}" alt="" width="100">
                   </th>
                   <td>{{$car->model}}</td>
                   <td>{{$car->brandl}}</td>
                   <td>{{$car->fuel_type}}</td>
                   <td>{{$car->price}}</td>
                   <td>
-                    <a href="" class="btn btn-primary">View</a>
-                    <a href="" class="btn btn-primary">Edit</a>
+                    <a href="{{route('admin.cars.show', $car->id)}}" class="btn btn-primary">View</a>
+                    <a href="{{route('admin.cars.edit', $car->id)}}" class="btn btn-primary">Edit</a>
                   </td>
                 </tr>
                     
                 @empty
+                <tr>
+                  No cars found
+                </tr>
                     
                 @endforelse
               
             </tbody>
           </table>    
     </div>
+    {{$cars->links('pagination::bootstrap-5')}}
 </div>
 
 @endsection

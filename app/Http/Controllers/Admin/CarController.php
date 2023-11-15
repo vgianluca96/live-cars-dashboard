@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -14,7 +15,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('admin.cars.index', ['cars' => Car::all()]);
+        return view('admin.cars.index', ['cars' => Car::paginate(9)]);
     }
 
     /**
@@ -22,7 +23,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cars.create');
     }
 
     /**
@@ -30,7 +31,19 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        //
+
+        $data = $request->validated();
+
+        //dd($data);
+
+        if ($request->has('image')) {
+            $path = Storage::put('car_images', $data['image']);
+            $data['image'] = $path;
+        }
+
+        Car::create($data);
+
+        return to_route('admin.cars.index')->with('message', 'Car successfully created');
     }
 
     /**
@@ -38,7 +51,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        //
+        return view('admin.cars.show', compact('car'));
     }
 
     /**
@@ -46,7 +59,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        //
+        return view('admin.cars.edit', compact('car'));
     }
 
     /**
@@ -54,7 +67,7 @@ class CarController extends Controller
      */
     public function update(UpdateCarRequest $request, Car $car)
     {
-        //
+        dd($request->all());
     }
 
     /**
