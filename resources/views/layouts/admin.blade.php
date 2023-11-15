@@ -86,7 +86,24 @@
         </nav>
 
         <main class="">
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card mt-4 shadow-lg p-2 border-0">
+                            <nav class="nav nav-pills flex-column">
+                                <a href="{{route('admin.cars.index')}}" class="nav-link nav-pills {{Route::currentRouteName() === 'admin.cars.index' ? 'active' : ''}}" aria-current="page">{{__('Cars')}}</a>
+                                
+                                <a href="#" class="nav-link nav-pills">Link</a>
+                                <a href="#" class="nav-link nav-pills">Link</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                </div>
+
+            </div>
         </main>
     </div>
 </body>
