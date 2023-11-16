@@ -39,6 +39,18 @@
         </div>
 
         <div class="mb-3">
+            <label for="transmission" class="form-label">Category</label>
+            <select name="transmission" id="transmission" class="form-select">
+                @foreach($categories as $category)
+                <option value="{{$category->name}}">
+                    {{$category->name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+        
+        
+        <div class="mb-3">
             <label for="price" class="form-label">price</label>
             <input type="number" id="price" name="price" class="form-control" value="{{old('price')}}">
         </div>

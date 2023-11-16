@@ -29,7 +29,14 @@
                   <td>{{$car->price}}</td>
                   <td>
                     <a href="{{route('admin.cars.show', $car->id)}}" class="btn btn-primary">View</a>
-                    <a href="{{route('admin.cars.edit', $car->id)}}" class="btn btn-primary">Edit</a>
+                    <a href="{{route('admin.cars.edit', $car->id)}}" class="btn btn-secondary">Edit</a>
+                    <form action="{{route('admin.cars.destroy', $car->id)}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit"class="btn btn-danger">
+                        Delete
+                      </button>
+                    </form>
                   </td>
                 </tr>
                     

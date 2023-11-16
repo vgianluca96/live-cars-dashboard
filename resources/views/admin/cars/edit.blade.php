@@ -5,7 +5,7 @@
 <div class="container py-4">
 
     <div class="py-2">
-        <h1>Insert a new car</h1>
+        <h1>Update {{$car->brand}} {{$car->model}}</h1>
     </div>
 
     @if ($errors->any())
